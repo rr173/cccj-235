@@ -1,0 +1,33 @@
+{
+  "package_version": 1,
+  "tool_version": "1.0.0",
+  "value_domain": {
+    "reflectance_min": 0.0,
+    "reflectance_max": 1.0,
+    "quality_min": 0,
+    "quality_max": 100
+  },
+  "batches": [
+    {
+      "batch_id": "B",
+      "acquired_at": "2026-02-01T00:00:00+00:00",
+      "cell_size": 2,
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 4,
+        "y1": 4
+      },
+      "source_file": "round3_B.jsonl"
+    }
+  ],
+  "record_count": 4,
+  "stats": {
+    "valid": 4,
+    "cloud": 0,
+    "missing_channel": 0,
+    "by_cell_size": {
+      "2": 4
+    }
+  }
+}

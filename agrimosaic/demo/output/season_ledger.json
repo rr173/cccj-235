@@ -1,0 +1,240 @@
+{
+  "shift": {
+    "job": "agrimosaic.season.retest_qualification_ledger",
+    "schema_version": 1,
+    "criteria": {
+      "reflectance_cap": 0.3,
+      "min_quality": 10,
+      "min_consecutive_rounds": 2,
+      "min_span_days": 0,
+      "area_threshold_bp": 2500
+    },
+    "rounds": [
+      {
+        "date": "2026-05-01",
+        "observed": true
+      },
+      {
+        "date": "2026-05-10",
+        "observed": false
+      },
+      {
+        "date": "2026-05-20",
+        "observed": true
+      }
+    ],
+    "plot_count": 2,
+    "plots": [
+      {
+        "plot_id": "SHIFT",
+        "bounds": {
+          "x0": 0,
+          "y0": 0,
+          "x1": 4,
+          "y1": 4
+        },
+        "total_area": 16,
+        "confirmed_area": 0,
+        "possible_area_upper_bound": 8,
+        "confirmed_bp": 0,
+        "possible_bp_upper_bound": 5000,
+        "first_confirmed_area_by_date": {},
+        "qualification": "pending",
+        "qualification_note": "已确认 0bp 未达门槛、上界 5000bp 可达，缺失/不可靠观测仍可能改变复测资格，待定"
+      },
+      {
+        "plot_id": "EXACT",
+        "bounds": {
+          "x0": 0,
+          "y0": 0,
+          "x1": 4,
+          "y1": 4
+        },
+        "total_area": 16,
+        "confirmed_area": 0,
+        "possible_area_upper_bound": 8,
+        "confirmed_bp": 0,
+        "possible_bp_upper_bound": 5000,
+        "first_confirmed_area_by_date": {},
+        "qualification": "pending",
+        "qualification_note": "已确认 0bp 未达门槛、上界 5000bp 可达，缺失/不可靠观测仍可能改变复测资格，待定"
+      }
+    ]
+  },
+  "shift_settled": {
+    "job": "agrimosaic.season.retest_qualification_ledger",
+    "schema_version": 1,
+    "criteria": {
+      "reflectance_cap": 0.3,
+      "min_quality": 10,
+      "min_consecutive_rounds": 2,
+      "min_span_days": 0,
+      "area_threshold_bp": 2500
+    },
+    "rounds": [
+      {
+        "date": "2026-05-01",
+        "observed": true
+      },
+      {
+        "date": "2026-05-10",
+        "observed": true
+      },
+      {
+        "date": "2026-05-20",
+        "observed": true
+      }
+    ],
+    "plot_count": 1,
+    "plots": [
+      {
+        "plot_id": "SHIFT",
+        "bounds": {
+          "x0": 0,
+          "y0": 0,
+          "x1": 4,
+          "y1": 4
+        },
+        "total_area": 16,
+        "confirmed_area": 4,
+        "possible_area_upper_bound": 4,
+        "confirmed_bp": 2500,
+        "possible_bp_upper_bound": 2500,
+        "first_confirmed_area_by_date": {
+          "2026-05-20": 4
+        },
+        "qualification": "retest",
+        "qualification_note": "已确认面积占比 2500bp 达到门槛 2500bp，列入复测"
+      }
+    ]
+  },
+  "exact": {
+    "job": "agrimosaic.season.retest_qualification_ledger",
+    "schema_version": 1,
+    "criteria": {
+      "reflectance_cap": 0.3,
+      "min_quality": 10,
+      "min_consecutive_rounds": 2,
+      "min_span_days": 0,
+      "area_threshold_bp": 2500
+    },
+    "rounds": [
+      {
+        "date": "2026-05-01",
+        "observed": true
+      },
+      {
+        "date": "2026-05-20",
+        "observed": true
+      }
+    ],
+    "plot_count": 1,
+    "plots": [
+      {
+        "plot_id": "EXACT",
+        "bounds": {
+          "x0": 0,
+          "y0": 0,
+          "x1": 4,
+          "y1": 4
+        },
+        "total_area": 16,
+        "confirmed_area": 4,
+        "possible_area_upper_bound": 4,
+        "confirmed_bp": 2500,
+        "possible_bp_upper_bound": 2500,
+        "first_confirmed_area_by_date": {
+          "2026-05-20": 4
+        },
+        "qualification": "retest",
+        "qualification_note": "已确认面积占比 2500bp 达到门槛 2500bp，列入复测"
+      }
+    ]
+  },
+  "huge": {
+    "job": "agrimosaic.season.retest_qualification_ledger",
+    "schema_version": 1,
+    "criteria": {
+      "reflectance_cap": 0.3,
+      "min_quality": 10,
+      "min_consecutive_rounds": 2,
+      "min_span_days": 0,
+      "area_threshold_bp": 1
+    },
+    "rounds": [
+      {
+        "date": "2026-05-01",
+        "observed": true
+      },
+      {
+        "date": "2026-05-20",
+        "observed": true
+      }
+    ],
+    "plot_count": 1,
+    "plots": [
+      {
+        "plot_id": "HUGE",
+        "bounds": {
+          "x0": 0,
+          "y0": 0,
+          "x1": 1048576,
+          "y1": 1048576
+        },
+        "total_area": 1099511627776,
+        "confirmed_area": 1099511627774,
+        "possible_area_upper_bound": 1099511627774,
+        "confirmed_bp": 9999,
+        "possible_bp_upper_bound": 9999,
+        "first_confirmed_area_by_date": {
+          "2026-05-20": 1099511627774
+        },
+        "qualification": "retest",
+        "qualification_note": "已确认面积占比 9999bp 达到门槛 1bp，列入复测"
+      }
+    ]
+  },
+  "exact_threshold_plus_1bp": {
+    "job": "agrimosaic.season.retest_qualification_ledger",
+    "schema_version": 1,
+    "criteria": {
+      "reflectance_cap": 0.3,
+      "min_quality": 10,
+      "min_consecutive_rounds": 2,
+      "min_span_days": 0,
+      "area_threshold_bp": 2501
+    },
+    "rounds": [
+      {
+        "date": "2026-05-01",
+        "observed": true
+      },
+      {
+        "date": "2026-05-20",
+        "observed": true
+      }
+    ],
+    "plot_count": 1,
+    "plots": [
+      {
+        "plot_id": "EXACT",
+        "bounds": {
+          "x0": 0,
+          "y0": 0,
+          "x1": 4,
+          "y1": 4
+        },
+        "total_area": 16,
+        "confirmed_area": 4,
+        "possible_area_upper_bound": 4,
+        "confirmed_bp": 2500,
+        "possible_bp_upper_bound": 2500,
+        "first_confirmed_area_by_date": {
+          "2026-05-20": 4
+        },
+        "qualification": "excluded",
+        "qualification_note": "可能达标上界占比 2500bp 仍低于门槛 2501bp，不列入复测"
+      }
+    ]
+  }
+}

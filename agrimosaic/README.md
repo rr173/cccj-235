@@ -7,10 +7,11 @@
 纯 Python 标准库实现，建议一律以隔离模式运行：
 
 ```bash
-python3 -I run_tests.py                      # 36 项测试
+python3 -I run_tests.py                      # 63 项测试
 python3 -I agrimosaic/__main__.py build   --config <config.json> --out <pkg_dir>
 python3 -I agrimosaic/__main__.py extract --package <pkg_dir> \
         --x0 0 --y0 0 --x1 8 --y1 8 --target-size 2 [--output result.json]
+python3 -I agrimosaic/__main__.py season  --manifest <season.json> [--output ledger.json]
 ```
 
 ## 1. 数据契约
@@ -133,7 +134,85 @@ python3 -I agrimosaic/__main__.py extract --package demo/output/pkg_b \
 （`window_gap_classified.json`）：云遮 1 + 缺通道 1 + 声明内缺记录 13，
 外加有效赢家 1，面积 1+1+13+1=16 对平，缺口按云遮 → 缺通道 → 缺记录排序。
 
-## 5. 模块布局
+## 5. 季末离线作业：逐地块复测资格台账（season）
+
+`season` 回答调度员三个问题：已经确认达到连续低值条件的面积有多少；
+缺失或不够可靠的观测**是否还可能**改变地块的复测资格；已确认面积是在哪一轮
+首次达标的。作业只读镶嵌包，不修改输入，也不产出地图界面或逐位置输出。
+
+### 季末清单（JSON）
+
+```json
+{
+  "plots": [
+    {"plot_id": "FIELD-A", "bounds": {"x0": 0, "y0": 0, "x1": 4, "y1": 4}}
+  ],
+  "rounds": [
+    {"date": "2026-05-01", "package": "pkg/r1.mosaic"},
+    {"date": "2026-05-10", "package": null},
+    {"date": "2026-05-20", "package": "pkg/r3.mosaic"}
+  ],
+  "criteria": {
+    "reflectance_cap": 0.3,
+    "min_quality": 10,
+    "min_consecutive_rounds": 2,
+    "min_span_days": 0,
+    "area_threshold_bp": 2500
+  }
+}
+```
+
+- 地块沿用整数坐标系半开矩形，边界可以切过源格；地块编号唯一，地块之间
+  允许重叠且各算各的。
+- 轮次日期必须按日**严格递增**（以清单为准；包内采集时刻只用于既有镶嵌裁决）；
+  `package` 为 `null` 表示该轮未取得，非空路径无法读取时整个作业失败
+  （退出码 2），不会被当成一次未观测后继续出表。
+- 门槛：`min_consecutive_rounds`(K) 为正整数、`min_span_days`(D) 为非负整数、
+  `area_threshold_bp` 为 1..10000 的整数基点；清单任何字段非法同样拒收。
+
+### 单轮与跨轮裁决
+
+对地块内同一位置，每轮先按第 2 节既有规则选赢家，**再**应用本作业的质量门槛：
+
+| 情形 | 该轮状态 |
+| --- | --- |
+| 无赢家（云遮/缺通道/缺页/无声明）、轮次缺包 | `unknown` |
+| 赢家质量低于 `min_quality` | `unknown`（绝不改选排名靠后的源格） |
+| 有赢家且质量达标、反射 ≤ `reflectance_cap` | `low` |
+| 有赢家且质量达标、反射 > 上限 | `not_low` |
+
+任意一段**相邻**轮次全为低值、轮数达到 K 且末轮日期减首轮日期至少为 D，
+该片即确认达标；跨过未知轮次拼接两个低值段不算确认，但允许从下一轮重新
+开始。可能达标面积上界 = 把所有未知乐观视为低值后会达标的面积，包含已确认
+部分。已确认的每片面积只记在它**首次达标**的末轮日期，之后再次达标不重复记账。
+
+### 台账字段与资格判定
+
+每块地输出 `total_area`、`confirmed_area`（下界）、
+`possible_area_upper_bound`（上界）、两者的基点占比、
+`first_confirmed_area_by_date`（按日期归集的首次确认面积）与 `qualification`：
+
+- `retest`：下界占比达到门槛 → 列入复测；
+- `excluded`：上界占比仍不到门槛 → 不列入；
+- `pending`：两者之间 → 缺测/不可靠观测仍可能改变资格。
+
+面积都是整数基本单元平方数；门槛比较用整数交叉相乘
+（`part × 10000 ≥ 阈值 × total`），门槛处不会因四舍五入换档。
+
+### 几何复杂度保证
+
+多轮叠加采用**增量真实矩形交集**：每个原子只与真正和它正面积相交的分区矩形
+求交，互不相交的局部边界不会被拉通成横纵边线的全笛卡尔积；全程不枚举基本
+单元，极粗格（如边长 2²⁰）上只有零星细格修正时，原子数仍是与物理面积无关的
+小常数，面积总数精确对平。可复跑证据：
+
+```bash
+python3 -I demo/build_season_evidence.py
+# 小地块：低值移位 + 缺轮（pending）、移位后末轮首次确认（retest）、
+# 门槛 2500bp 复测而 2501bp 不列入；极大地块：2^40 面积上两个细格修正精确扣减
+```
+
+## 6. 模块布局
 
 ```
 agrimosaic/
@@ -142,7 +221,8 @@ agrimosaic/
   model.py     批次/源格模型、认证值域、输入校验、赢家排序键
   store.py     离线入仓、原子落盘、读包
   extract.py   窗口/目标格提取、赢家裁决、缺口归因、面积对平
-  cli.py       build / extract 命令行
-tests/         36 项 unittest（几何、裁决、归因、拒收、CLI 端到端）
+  season.py    季末清单校验、逐轮裁决、多轮增量叠加、复测资格台账
+  cli.py       build / extract / season 命令行
+tests/         63 项 unittest（几何、裁决、归因、拒收、季末台账、CLI 端到端）
 demo/          夹具生成脚本与证据输出
 ```

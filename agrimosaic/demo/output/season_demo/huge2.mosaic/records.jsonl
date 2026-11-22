@@ -1,0 +1,2 @@
+{"batch_id": "COARSE", "acquired_at": "2026-02-01T00:00:00+00:00", "cell": {"x0": 0, "y0": 0, "x1": 1048576, "y1": 1048576, "size": 1048576}, "state": "valid", "reflectance": 0.1, "quality": 50}
+{"batch_id": "FINE", "acquired_at": "2026-02-02T00:00:00+00:00", "cell": {"x0": 3, "y0": 3, "x1": 4, "y1": 4, "size": 1}, "state": "valid", "reflectance": 0.9, "quality": 90}

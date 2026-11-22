@@ -1,0 +1,4 @@
+{"batch_id": "B", "acquired_at": "2026-02-01T00:00:00+00:00", "cell": {"x0": 0, "y0": 0, "x1": 2, "y1": 2, "size": 2}, "state": "valid", "reflectance": 0.9, "quality": 50}
+{"batch_id": "B", "acquired_at": "2026-02-01T00:00:00+00:00", "cell": {"x0": 2, "y0": 0, "x1": 4, "y1": 2, "size": 2}, "state": "valid", "reflectance": 0.9, "quality": 50}
+{"batch_id": "B", "acquired_at": "2026-02-01T00:00:00+00:00", "cell": {"x0": 0, "y0": 2, "x1": 2, "y1": 4, "size": 2}, "state": "valid", "reflectance": 0.9, "quality": 50}
+{"batch_id": "B", "acquired_at": "2026-02-01T00:00:00+00:00", "cell": {"x0": 2, "y0": 2, "x1": 4, "y1": 4, "size": 2}, "state": "valid", "reflectance": 0.1, "quality": 50}

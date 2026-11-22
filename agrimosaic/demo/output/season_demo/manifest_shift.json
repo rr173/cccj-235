@@ -1,0 +1,43 @@
+{
+  "plots": [
+    {
+      "plot_id": "SHIFT",
+      "bounds": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 4,
+        "y1": 4
+      }
+    },
+    {
+      "plot_id": "EXACT",
+      "bounds": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 4,
+        "y1": 4
+      }
+    }
+  ],
+  "rounds": [
+    {
+      "date": "2026-05-01",
+      "package": "/workspace/agrimosaic/demo/output/season_demo/round1.mosaic"
+    },
+    {
+      "date": "2026-05-10",
+      "package": null
+    },
+    {
+      "date": "2026-05-20",
+      "package": "/workspace/agrimosaic/demo/output/season_demo/round3.mosaic"
+    }
+  ],
+  "criteria": {
+    "reflectance_cap": 0.3,
+    "min_quality": 10,
+    "min_consecutive_rounds": 2,
+    "min_span_days": 0,
+    "area_threshold_bp": 2500
+  }
+}

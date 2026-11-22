@@ -8,6 +8,7 @@ import sys
 
 from .extract import extract_window, validate_window
 from .model import InputError
+from .season import run_season_job
 from .store import build_package, load_package
 
 
@@ -39,6 +40,21 @@ def _cmd_extract(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_season(args: argparse.Namespace) -> int:
+    try:
+        ledger = run_season_job(args.manifest)
+    except (InputError, ValueError, FileNotFoundError) as exc:
+        print(f"季末作业失败：{exc}", file=sys.stderr)
+        return 2
+    text = json.dumps(ledger, ensure_ascii=False, indent=2)
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as fh:
+            fh.write(text + "\n")
+    else:
+        print(text)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="agrimosaic",
@@ -61,6 +77,14 @@ def build_parser() -> argparse.ArgumentParser:
                       help="目标格边长（基本单元的 2 的非负整数次幂）")
     p_ex.add_argument("--output", help="可选：结果 JSON 输出文件，缺省打印到标准输出")
     p_ex.set_defaults(func=_cmd_extract)
+
+    p_season = sub.add_parser(
+        "season",
+        help="季末离线作业：按轮次清单产出逐地块复测资格台账（只读输入包，不做逐位置输出）")
+    p_season.add_argument("--manifest", required=True,
+                          help="季末清单 JSON：地块、按日严格递增的轮次与包路径、裁决门槛")
+    p_season.add_argument("--output", help="可选：台账 JSON 输出文件，缺省打印到标准输出")
+    p_season.set_defaults(func=_cmd_season)
     return parser
 
 
