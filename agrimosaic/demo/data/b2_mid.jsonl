@@ -1,0 +1,6 @@
+{"cell": {"x0": 0, "y0": 0, "x1": 2, "y1": 2}, "reflectance": 0.2, "quality": 20}
+{"cell": {"x0": 2, "y0": 0, "x1": 4, "y1": 2}, "reflectance": 0.21, "quality": 21}
+{"cell": {"x0": 4, "y0": 0, "x1": 6, "y1": 2}, "reflectance": 0.22, "quality": 22}
+{"cell": {"x0": 6, "y0": 0, "x1": 8, "y1": 2}, "reflectance": 0.23, "quality": 23}
+{"cell": {"x0": 0, "y0": 2, "x1": 2, "y1": 4}, "state": "cloud"}
+{"cell": {"x0": 4, "y0": 2, "x1": 6, "y1": 4}, "reflectance": 0.24, "quality": 24}

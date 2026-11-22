@@ -1,0 +1,46 @@
+{
+  "window": {
+    "x0": 8,
+    "y0": 8,
+    "x1": 12,
+    "y1": 12
+  },
+  "target_size": 4,
+  "cell_count": 1,
+  "summary": {
+    "empty": 1
+  },
+  "total_covered_area": 0,
+  "total_gap_area": 16,
+  "cells": [
+    {
+      "target_cell": {
+        "x0": 8,
+        "y0": 8,
+        "x1": 12,
+        "y1": 12
+      },
+      "target_size": 4,
+      "status": "empty",
+      "covered_area": 0,
+      "gap_area": 16,
+      "area": 16,
+      "winners": [],
+      "gaps": [
+        {
+          "reason": "no_declared_coverage",
+          "regions": [
+            {
+              "x0": 8,
+              "y0": 8,
+              "x1": 12,
+              "y1": 12
+            }
+          ],
+          "area": 16
+        }
+      ],
+      "fragment_count": 1
+    }
+  ]
+}

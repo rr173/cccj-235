@@ -1,0 +1,58 @@
+{
+  "package_version": 1,
+  "tool_version": "1.0.0",
+  "value_domain": {
+    "reflectance_min": 0.0,
+    "reflectance_max": 1.0,
+    "quality_min": 0,
+    "quality_max": 100
+  },
+  "batches": [
+    {
+      "batch_id": "COARSE",
+      "acquired_at": "2026-01-01T00:00:00+00:00",
+      "cell_size": 1048576,
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 1048576,
+        "y1": 1048576
+      },
+      "source_file": "../data/huge_coarse.jsonl"
+    },
+    {
+      "batch_id": "FINE",
+      "acquired_at": "2026-02-01T00:00:00+00:00",
+      "cell_size": 1,
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 8,
+        "y1": 8
+      },
+      "source_file": "../data/one_fine.jsonl"
+    },
+    {
+      "batch_id": "EMPTY",
+      "acquired_at": "2026-03-01T00:00:00+00:00",
+      "cell_size": 2,
+      "coverage": {
+        "x0": 1048576,
+        "y0": 1048576,
+        "x1": 1048584,
+        "y1": 1048584
+      },
+      "source_file": "../data/empty_batch.jsonl"
+    }
+  ],
+  "record_count": 2,
+  "stats": {
+    "valid": 2,
+    "cloud": 0,
+    "missing_channel": 0,
+    "by_cell_size": {
+      "1": 1,
+      "1048576": 1
+    }
+  }
+}

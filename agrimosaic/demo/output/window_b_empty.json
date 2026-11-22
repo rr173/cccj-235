@@ -1,0 +1,133 @@
+{
+  "window": {
+    "x0": 1048576,
+    "y0": 1048576,
+    "x1": 1048580,
+    "y1": 1048580
+  },
+  "target_size": 2,
+  "cell_count": 4,
+  "summary": {
+    "empty": 4
+  },
+  "total_covered_area": 0,
+  "total_gap_area": 16,
+  "cells": [
+    {
+      "target_cell": {
+        "x0": 1048576,
+        "y0": 1048576,
+        "x1": 1048578,
+        "y1": 1048578
+      },
+      "target_size": 2,
+      "status": "empty",
+      "covered_area": 0,
+      "gap_area": 4,
+      "area": 4,
+      "winners": [],
+      "gaps": [
+        {
+          "reason": "declared_no_record",
+          "regions": [
+            {
+              "x0": 1048576,
+              "y0": 1048576,
+              "x1": 1048578,
+              "y1": 1048578
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "fragment_count": 1
+    },
+    {
+      "target_cell": {
+        "x0": 1048578,
+        "y0": 1048576,
+        "x1": 1048580,
+        "y1": 1048578
+      },
+      "target_size": 2,
+      "status": "empty",
+      "covered_area": 0,
+      "gap_area": 4,
+      "area": 4,
+      "winners": [],
+      "gaps": [
+        {
+          "reason": "declared_no_record",
+          "regions": [
+            {
+              "x0": 1048578,
+              "y0": 1048576,
+              "x1": 1048580,
+              "y1": 1048578
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "fragment_count": 1
+    },
+    {
+      "target_cell": {
+        "x0": 1048576,
+        "y0": 1048578,
+        "x1": 1048578,
+        "y1": 1048580
+      },
+      "target_size": 2,
+      "status": "empty",
+      "covered_area": 0,
+      "gap_area": 4,
+      "area": 4,
+      "winners": [],
+      "gaps": [
+        {
+          "reason": "declared_no_record",
+          "regions": [
+            {
+              "x0": 1048576,
+              "y0": 1048578,
+              "x1": 1048578,
+              "y1": 1048580
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "fragment_count": 1
+    },
+    {
+      "target_cell": {
+        "x0": 1048578,
+        "y0": 1048578,
+        "x1": 1048580,
+        "y1": 1048580
+      },
+      "target_size": 2,
+      "status": "empty",
+      "covered_area": 0,
+      "gap_area": 4,
+      "area": 4,
+      "winners": [],
+      "gaps": [
+        {
+          "reason": "declared_no_record",
+          "regions": [
+            {
+              "x0": 1048578,
+              "y0": 1048578,
+              "x1": 1048580,
+              "y1": 1048580
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "fragment_count": 1
+    }
+  ]
+}

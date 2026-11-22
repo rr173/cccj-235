@@ -1,0 +1,6 @@
+{"cell": {"x0": 0, "y0": 0, "x1": 1, "y1": 1}, "reflectance": 0.1, "quality": 10}
+{"cell": {"x0": 1, "y0": 0, "x1": 2, "y1": 1}, "reflectance": 0.11, "quality": 11}
+{"cell": {"x0": 0, "y0": 1, "x1": 1, "y1": 2}, "reflectance": 0.12, "quality": 12}
+{"cell": {"x0": 1, "y0": 1, "x1": 2, "y1": 2}, "reflectance": 0.13, "quality": 13}
+{"cell": {"x0": 2, "y0": 0, "x1": 3, "y1": 1}, "state": "missing_channel"}
+{"cell": {"x0": 3, "y0": 0, "x1": 4, "y1": 1}, "state": "cloud"}

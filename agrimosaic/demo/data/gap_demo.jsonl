@@ -1,0 +1,3 @@
+{"cell": {"x0": 0, "y0": 0, "x1": 1, "y1": 1}, "state": "cloud"}
+{"cell": {"x0": 1, "y0": 0, "x1": 2, "y1": 1}, "state": "missing_channel"}
+{"cell": {"x0": 0, "y0": 1, "x1": 1, "y1": 2}, "reflectance": 0.55, "quality": 55}

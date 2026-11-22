@@ -1,0 +1,107 @@
+{
+  "window": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 4,
+    "y1": 4
+  },
+  "target_size": 4,
+  "cell_count": 1,
+  "summary": {
+    "partial_coverage": 1
+  },
+  "total_covered_area": 1,
+  "total_gap_area": 15,
+  "cells": [
+    {
+      "target_cell": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 4,
+        "y1": 4
+      },
+      "target_size": 4,
+      "status": "partial_coverage",
+      "covered_area": 1,
+      "gap_area": 15,
+      "area": 16,
+      "winners": [
+        {
+          "source": {
+            "batch_id": "B",
+            "acquired_at": "2026-06-01T00:00:00+00:00",
+            "source_cell": {
+              "x0": 0,
+              "y0": 1,
+              "x1": 1,
+              "y1": 2,
+              "size": 1
+            }
+          },
+          "reflectance": 0.55,
+          "quality": 55,
+          "regions": [
+            {
+              "x0": 0,
+              "y0": 1,
+              "x1": 1,
+              "y1": 2
+            }
+          ],
+          "area": 1
+        }
+      ],
+      "gaps": [
+        {
+          "reason": "unavailable_cloud",
+          "regions": [
+            {
+              "x0": 0,
+              "y0": 0,
+              "x1": 1,
+              "y1": 1
+            }
+          ],
+          "area": 1
+        },
+        {
+          "reason": "unavailable_missing_channel",
+          "regions": [
+            {
+              "x0": 1,
+              "y0": 0,
+              "x1": 2,
+              "y1": 1
+            }
+          ],
+          "area": 1
+        },
+        {
+          "reason": "declared_no_record",
+          "regions": [
+            {
+              "x0": 2,
+              "y0": 0,
+              "x1": 4,
+              "y1": 1
+            },
+            {
+              "x0": 1,
+              "y0": 1,
+              "x1": 4,
+              "y1": 2
+            },
+            {
+              "x0": 0,
+              "y0": 2,
+              "x1": 4,
+              "y1": 4
+            }
+          ],
+          "area": 13
+        }
+      ],
+      "fragment_count": 9
+    }
+  ]
+}
