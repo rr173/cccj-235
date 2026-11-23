@@ -1,0 +1,241 @@
+{
+  "window": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 4,
+    "y1": 4
+  },
+  "target_size": 2,
+  "cell_count": 4,
+  "summary": {
+    "homogeneous": 4
+  },
+  "total_covered_area": 16,
+  "total_gap_area": 0,
+  "cells": [
+    {
+      "target_cell": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 2,
+        "y1": 2
+      },
+      "target_size": 2,
+      "status": "homogeneous",
+      "covered_area": 4,
+      "gap_area": 0,
+      "area": 4,
+      "winners": [
+        {
+          "source": {
+            "batch_id": "A",
+            "acquired_at": "2026-03-01T00:00:00+00:00",
+            "source_cell": {
+              "x0": 0,
+              "y0": 0,
+              "x1": 2,
+              "y1": 2,
+              "size": 2
+            }
+          },
+          "reflectance": 0.11,
+          "quality": 11,
+          "regions": [
+            {
+              "x0": 0,
+              "y0": 0,
+              "x1": 2,
+              "y1": 2
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "gaps": [],
+      "fragment_count": 1,
+      "value": {
+        "reflectance": 0.11,
+        "quality": 11
+      },
+      "provenance": {
+        "batch_id": "A",
+        "acquired_at": "2026-03-01T00:00:00+00:00",
+        "source_cell": {
+          "x0": 0,
+          "y0": 0,
+          "x1": 2,
+          "y1": 2,
+          "size": 2
+        }
+      }
+    },
+    {
+      "target_cell": {
+        "x0": 2,
+        "y0": 0,
+        "x1": 4,
+        "y1": 2
+      },
+      "target_size": 2,
+      "status": "homogeneous",
+      "covered_area": 4,
+      "gap_area": 0,
+      "area": 4,
+      "winners": [
+        {
+          "source": {
+            "batch_id": "A",
+            "acquired_at": "2026-03-01T00:00:00+00:00",
+            "source_cell": {
+              "x0": 2,
+              "y0": 0,
+              "x1": 4,
+              "y1": 2,
+              "size": 2
+            }
+          },
+          "reflectance": 0.11,
+          "quality": 11,
+          "regions": [
+            {
+              "x0": 2,
+              "y0": 0,
+              "x1": 4,
+              "y1": 2
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "gaps": [],
+      "fragment_count": 1,
+      "value": {
+        "reflectance": 0.11,
+        "quality": 11
+      },
+      "provenance": {
+        "batch_id": "A",
+        "acquired_at": "2026-03-01T00:00:00+00:00",
+        "source_cell": {
+          "x0": 2,
+          "y0": 0,
+          "x1": 4,
+          "y1": 2,
+          "size": 2
+        }
+      }
+    },
+    {
+      "target_cell": {
+        "x0": 0,
+        "y0": 2,
+        "x1": 2,
+        "y1": 4
+      },
+      "target_size": 2,
+      "status": "homogeneous",
+      "covered_area": 4,
+      "gap_area": 0,
+      "area": 4,
+      "winners": [
+        {
+          "source": {
+            "batch_id": "A",
+            "acquired_at": "2026-03-01T00:00:00+00:00",
+            "source_cell": {
+              "x0": 0,
+              "y0": 2,
+              "x1": 2,
+              "y1": 4,
+              "size": 2
+            }
+          },
+          "reflectance": 0.11,
+          "quality": 11,
+          "regions": [
+            {
+              "x0": 0,
+              "y0": 2,
+              "x1": 2,
+              "y1": 4
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "gaps": [],
+      "fragment_count": 1,
+      "value": {
+        "reflectance": 0.11,
+        "quality": 11
+      },
+      "provenance": {
+        "batch_id": "A",
+        "acquired_at": "2026-03-01T00:00:00+00:00",
+        "source_cell": {
+          "x0": 0,
+          "y0": 2,
+          "x1": 2,
+          "y1": 4,
+          "size": 2
+        }
+      }
+    },
+    {
+      "target_cell": {
+        "x0": 2,
+        "y0": 2,
+        "x1": 4,
+        "y1": 4
+      },
+      "target_size": 2,
+      "status": "homogeneous",
+      "covered_area": 4,
+      "gap_area": 0,
+      "area": 4,
+      "winners": [
+        {
+          "source": {
+            "batch_id": "A",
+            "acquired_at": "2026-03-01T00:00:00+00:00",
+            "source_cell": {
+              "x0": 2,
+              "y0": 2,
+              "x1": 4,
+              "y1": 4,
+              "size": 2
+            }
+          },
+          "reflectance": 0.11,
+          "quality": 11,
+          "regions": [
+            {
+              "x0": 2,
+              "y0": 2,
+              "x1": 4,
+              "y1": 4
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "gaps": [],
+      "fragment_count": 1,
+      "value": {
+        "reflectance": 0.11,
+        "quality": 11
+      },
+      "provenance": {
+        "batch_id": "A",
+        "acquired_at": "2026-03-01T00:00:00+00:00",
+        "source_cell": {
+          "x0": 2,
+          "y0": 2,
+          "x1": 4,
+          "y1": 4,
+          "size": 2
+        }
+      }
+    }
+  ]
+}

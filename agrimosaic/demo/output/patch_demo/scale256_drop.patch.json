@@ -1,0 +1,14 @@
+{
+  "patch_format": "agrimosaic.patch",
+  "patch_version": 1,
+  "package_version": 1,
+  "base_fingerprint": "sha256:22b41f67d19fa85a6928ab2964e0f562cd63aee2c0bcad4ce2db3f5aff47fb3a",
+  "target_fingerprint": "sha256:a975ce753ab0d82dcb7427776e8a21cec4c2137e777e0df8d510e80e54d5025f",
+  "batch_additions": [],
+  "batch_removals": [
+    "T"
+  ],
+  "batch_updates": [],
+  "record_upserts": [],
+  "record_deletions": []
+}

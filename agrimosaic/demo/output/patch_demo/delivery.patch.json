@@ -1,0 +1,409 @@
+{
+  "patch_format": "agrimosaic.patch",
+  "patch_version": 1,
+  "package_version": 1,
+  "base_fingerprint": "sha256:4a1c097651e4e4c64a6b0d3e12609e90422a2d21149d7cf9b14fb5869dc46013",
+  "target_fingerprint": "sha256:68cb195ed4da4c3668a3bc67aa54f9e480a030bb07cc2e4e639089f6b8ab852e",
+  "batch_additions": [
+    {
+      "batch_id": "E",
+      "cell_size": 2,
+      "acquired_at": "2026-04-01T00:00:00+00:00",
+      "coverage": {
+        "x0": 0,
+        "y0": 8,
+        "x1": 4,
+        "y1": 12
+      }
+    }
+  ],
+  "batch_removals": [
+    "C"
+  ],
+  "batch_updates": [
+    {
+      "batch_id": "A",
+      "acquired_at": "2026-03-01T00:00:00+00:00",
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 8,
+        "y1": 8
+      }
+    },
+    {
+      "batch_id": "D",
+      "acquired_at": "2026-01-10T00:00:00+00:00",
+      "coverage": {
+        "x0": 32,
+        "y0": 0,
+        "x1": 40,
+        "y1": 8
+      }
+    }
+  ],
+  "record_upserts": [
+    {
+      "batch_id": "E",
+      "cell": {
+        "x0": 0,
+        "y0": 8,
+        "x1": 2,
+        "y1": 10
+      },
+      "state": "valid",
+      "reflectance": 0.66,
+      "quality": 66
+    },
+    {
+      "batch_id": "E",
+      "cell": {
+        "x0": 2,
+        "y0": 8,
+        "x1": 4,
+        "y1": 10
+      },
+      "state": "valid",
+      "reflectance": 0.67,
+      "quality": 67
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 32,
+        "y0": 0,
+        "x1": 34,
+        "y1": 2
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 32,
+        "y0": 2,
+        "x1": 34,
+        "y1": 4
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 32,
+        "y0": 4,
+        "x1": 34,
+        "y1": 6
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 32,
+        "y0": 6,
+        "x1": 34,
+        "y1": 8
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 34,
+        "y0": 0,
+        "x1": 36,
+        "y1": 2
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 34,
+        "y0": 2,
+        "x1": 36,
+        "y1": 4
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 34,
+        "y0": 4,
+        "x1": 36,
+        "y1": 6
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 34,
+        "y0": 6,
+        "x1": 36,
+        "y1": 8
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 36,
+        "y0": 0,
+        "x1": 38,
+        "y1": 2
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 36,
+        "y0": 2,
+        "x1": 38,
+        "y1": 4
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 36,
+        "y0": 4,
+        "x1": 38,
+        "y1": 6
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 36,
+        "y0": 6,
+        "x1": 38,
+        "y1": 8
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 38,
+        "y0": 0,
+        "x1": 40,
+        "y1": 2
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 38,
+        "y0": 2,
+        "x1": 40,
+        "y1": 4
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 38,
+        "y0": 4,
+        "x1": 40,
+        "y1": 6
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 38,
+        "y0": 6,
+        "x1": 40,
+        "y1": 8
+      },
+      "state": "valid",
+      "reflectance": 0.55,
+      "quality": 55
+    }
+  ],
+  "record_deletions": [
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 16,
+        "y0": 0,
+        "x1": 18,
+        "y1": 2
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 16,
+        "y0": 2,
+        "x1": 18,
+        "y1": 4
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 16,
+        "y0": 4,
+        "x1": 18,
+        "y1": 6
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 16,
+        "y0": 6,
+        "x1": 18,
+        "y1": 8
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 18,
+        "y0": 0,
+        "x1": 20,
+        "y1": 2
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 18,
+        "y0": 2,
+        "x1": 20,
+        "y1": 4
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 18,
+        "y0": 4,
+        "x1": 20,
+        "y1": 6
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 18,
+        "y0": 6,
+        "x1": 20,
+        "y1": 8
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 20,
+        "y0": 0,
+        "x1": 22,
+        "y1": 2
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 20,
+        "y0": 2,
+        "x1": 22,
+        "y1": 4
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 20,
+        "y0": 4,
+        "x1": 22,
+        "y1": 6
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 20,
+        "y0": 6,
+        "x1": 22,
+        "y1": 8
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 22,
+        "y0": 0,
+        "x1": 24,
+        "y1": 2
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 22,
+        "y0": 2,
+        "x1": 24,
+        "y1": 4
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 22,
+        "y0": 4,
+        "x1": 24,
+        "y1": 6
+      }
+    },
+    {
+      "batch_id": "D",
+      "cell": {
+        "x0": 22,
+        "y0": 6,
+        "x1": 24,
+        "y1": 8
+      }
+    }
+  ]
+}

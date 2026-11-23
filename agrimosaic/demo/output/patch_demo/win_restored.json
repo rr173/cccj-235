@@ -1,0 +1,188 @@
+{
+  "window": {
+    "x0": 0,
+    "y0": 8,
+    "x1": 4,
+    "y1": 12
+  },
+  "target_size": 2,
+  "cell_count": 4,
+  "summary": {
+    "homogeneous": 2,
+    "empty": 2
+  },
+  "total_covered_area": 8,
+  "total_gap_area": 8,
+  "cells": [
+    {
+      "target_cell": {
+        "x0": 0,
+        "y0": 8,
+        "x1": 2,
+        "y1": 10
+      },
+      "target_size": 2,
+      "status": "homogeneous",
+      "covered_area": 4,
+      "gap_area": 0,
+      "area": 4,
+      "winners": [
+        {
+          "source": {
+            "batch_id": "E",
+            "acquired_at": "2026-04-01T00:00:00+00:00",
+            "source_cell": {
+              "x0": 0,
+              "y0": 8,
+              "x1": 2,
+              "y1": 10,
+              "size": 2
+            }
+          },
+          "reflectance": 0.66,
+          "quality": 66,
+          "regions": [
+            {
+              "x0": 0,
+              "y0": 8,
+              "x1": 2,
+              "y1": 10
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "gaps": [],
+      "fragment_count": 1,
+      "value": {
+        "reflectance": 0.66,
+        "quality": 66
+      },
+      "provenance": {
+        "batch_id": "E",
+        "acquired_at": "2026-04-01T00:00:00+00:00",
+        "source_cell": {
+          "x0": 0,
+          "y0": 8,
+          "x1": 2,
+          "y1": 10,
+          "size": 2
+        }
+      }
+    },
+    {
+      "target_cell": {
+        "x0": 2,
+        "y0": 8,
+        "x1": 4,
+        "y1": 10
+      },
+      "target_size": 2,
+      "status": "homogeneous",
+      "covered_area": 4,
+      "gap_area": 0,
+      "area": 4,
+      "winners": [
+        {
+          "source": {
+            "batch_id": "E",
+            "acquired_at": "2026-04-01T00:00:00+00:00",
+            "source_cell": {
+              "x0": 2,
+              "y0": 8,
+              "x1": 4,
+              "y1": 10,
+              "size": 2
+            }
+          },
+          "reflectance": 0.67,
+          "quality": 67,
+          "regions": [
+            {
+              "x0": 2,
+              "y0": 8,
+              "x1": 4,
+              "y1": 10
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "gaps": [],
+      "fragment_count": 1,
+      "value": {
+        "reflectance": 0.67,
+        "quality": 67
+      },
+      "provenance": {
+        "batch_id": "E",
+        "acquired_at": "2026-04-01T00:00:00+00:00",
+        "source_cell": {
+          "x0": 2,
+          "y0": 8,
+          "x1": 4,
+          "y1": 10,
+          "size": 2
+        }
+      }
+    },
+    {
+      "target_cell": {
+        "x0": 0,
+        "y0": 10,
+        "x1": 2,
+        "y1": 12
+      },
+      "target_size": 2,
+      "status": "empty",
+      "covered_area": 0,
+      "gap_area": 4,
+      "area": 4,
+      "winners": [],
+      "gaps": [
+        {
+          "reason": "declared_no_record",
+          "regions": [
+            {
+              "x0": 0,
+              "y0": 10,
+              "x1": 2,
+              "y1": 12
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "fragment_count": 1
+    },
+    {
+      "target_cell": {
+        "x0": 2,
+        "y0": 10,
+        "x1": 4,
+        "y1": 12
+      },
+      "target_size": 2,
+      "status": "empty",
+      "covered_area": 0,
+      "gap_area": 4,
+      "area": 4,
+      "winners": [],
+      "gaps": [
+        {
+          "reason": "declared_no_record",
+          "regions": [
+            {
+              "x0": 2,
+              "y0": 10,
+              "x1": 4,
+              "y1": 12
+            }
+          ],
+          "area": 4
+        }
+      ],
+      "fragment_count": 1
+    }
+  ]
+}

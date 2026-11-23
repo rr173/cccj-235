@@ -1,0 +1,16 @@
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 0, "y0": 0, "x1": 4, "y1": 4, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 4, "y0": 0, "x1": 8, "y1": 4, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 8, "y0": 0, "x1": 12, "y1": 4, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 12, "y0": 0, "x1": 16, "y1": 4, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 16, "y0": 0, "x1": 20, "y1": 4, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 20, "y0": 0, "x1": 24, "y1": 4, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 24, "y0": 0, "x1": 28, "y1": 4, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 28, "y0": 0, "x1": 32, "y1": 4, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 0, "y0": 4, "x1": 4, "y1": 8, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 4, "y0": 4, "x1": 8, "y1": 8, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 8, "y0": 4, "x1": 12, "y1": 8, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 12, "y0": 4, "x1": 16, "y1": 8, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 16, "y0": 4, "x1": 20, "y1": 8, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 20, "y0": 4, "x1": 24, "y1": 8, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 24, "y0": 4, "x1": 28, "y1": 8, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}
+{"batch_id": "T", "acquired_at": "2026-01-01T00:00:00+00:00", "cell": {"x0": 28, "y0": 4, "x1": 32, "y1": 8, "size": 4}, "state": "valid", "reflectance": 0.4, "quality": 40}

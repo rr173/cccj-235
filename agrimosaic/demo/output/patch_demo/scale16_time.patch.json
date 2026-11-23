@@ -1,0 +1,23 @@
+{
+  "patch_format": "agrimosaic.patch",
+  "patch_version": 1,
+  "package_version": 1,
+  "base_fingerprint": "sha256:7e1fbdf38eb83d79e967c2e86e28af745df0c3823c85eee45b0c440942e86bbd",
+  "target_fingerprint": "sha256:00bec0283b06206adc2d6857f99e8127c973225a0c5f52733bbe0e18cc104148",
+  "batch_additions": [],
+  "batch_removals": [],
+  "batch_updates": [
+    {
+      "batch_id": "T",
+      "acquired_at": "2026-06-01T00:00:00+00:00",
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 32,
+        "y1": 32
+      }
+    }
+  ],
+  "record_upserts": [],
+  "record_deletions": []
+}

@@ -103,9 +103,6 @@ def build_package(config_path: str, out_dir: str) -> dict:
     config_dir = os.path.dirname(os.path.abspath(config_path))
     records = read_records(config, config_dir)
 
-    boxes = [r.rect for r in records]
-    nodes, root_id = build_rtree(boxes)
-
     meta = {
         "package_version": PACKAGE_VERSION,
         "tool_version": __version__,
@@ -129,8 +126,23 @@ def build_package(config_path: str, out_dir: str) -> dict:
         "record_count": len(records),
         "stats": _stats(records),
     }
+    write_package_dir(out_dir, meta, records)
+    return {"out_dir": out_dir, "record_count": len(records),
+            "batch_count": len(config.batches), "stats": meta["stats"]}
 
-    # 原子落盘：先写临时目录再重命名，拒收时不会留下半成品
+
+def write_package_dir(out_dir: str, meta: dict, records: Sequence[SourceRecord]) -> None:
+    """把 meta 与全部源格记录原子落盘为标准镶嵌包目录。
+
+    记录按 (y, x, 批号) 排序写入 records.jsonl（行号即 R 树叶子 id），
+    R 树索引随记录一并重建；先写临时目录再重命名，out_dir 已存在或
+    中途失败都不会留下半成品目录。build 与补丁 apply 共用本函数，
+    保证两种途径产出的包布局一致。
+    """
+    ordered = sorted(records, key=lambda r: (r.rect[1], r.rect[0], r.batch_id))
+    boxes = [r.rect for r in ordered]
+    nodes, root_id = build_rtree(boxes)
+
     parent = os.path.dirname(os.path.abspath(out_dir)) or "."
     os.makedirs(parent, exist_ok=True)
     tmp = tempfile.mkdtemp(prefix=".agrimosaic-", dir=parent)
@@ -138,7 +150,7 @@ def build_package(config_path: str, out_dir: str) -> dict:
         with open(os.path.join(tmp, "meta.json"), "w", encoding="utf-8") as fh:
             json.dump(meta, fh, ensure_ascii=False, indent=2)
         with open(os.path.join(tmp, "records.jsonl"), "w", encoding="utf-8") as fh:
-            for r in records:
+            for r in ordered:
                 fh.write(json.dumps(_record_to_json(r), ensure_ascii=False) + "\n")
         with open(os.path.join(tmp, "rtree.json"), "w", encoding="utf-8") as fh:
             json.dump({"root_id": root_id, "nodes": nodes}, fh, ensure_ascii=False)
@@ -150,9 +162,6 @@ def build_package(config_path: str, out_dir: str) -> dict:
             for f in os.listdir(tmp):
                 os.remove(os.path.join(tmp, f))
             os.rmdir(tmp)
-
-    return {"out_dir": out_dir, "record_count": len(records),
-            "batch_count": len(config.batches), "stats": meta["stats"]}
 
 
 def _stats(records: Sequence[SourceRecord]) -> dict:

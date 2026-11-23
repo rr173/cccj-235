@@ -7,12 +7,14 @@
 纯 Python 标准库实现，建议一律以隔离模式运行：
 
 ```bash
-python3 -I run_tests.py                      # 96 项测试
+python3 -I run_tests.py                      # 136 项测试
 python3 -I agrimosaic/__main__.py build   --config <config.json> --out <pkg_dir>
 python3 -I agrimosaic/__main__.py extract --package <pkg_dir> \
         --x0 0 --y0 0 --x1 8 --y1 8 --target-size 2 [--output result.json]
 python3 -I agrimosaic/__main__.py season  --manifest <season.json> [--output ledger.json]
 python3 -I agrimosaic/__main__.py audit   --config <audit.json>  [--output report.json]
+python3 -I agrimosaic/__main__.py diff    --old <old_pkg> --new <new_pkg> [--output patch.json]
+python3 -I agrimosaic/__main__.py apply   --package <old_pkg> --patch <patch.json> --out <new_pkg_dir>
 ```
 
 ## 1. 数据契约
@@ -265,7 +267,120 @@ python3 -I demo/build_audit_evidence.py      # 隐藏异常、零记录批次、
 验证面积按 `记录数 × s²` 累计，且单次审计遍历的记录条数只随记录数增长，
 与每格覆盖的基本单元数无关。
 
-## 7. 模块布局
+## 7. 离线增量交付（diff / apply）
+
+县站保存着旧包，中心后来补交观测、撤回作废航扫、订正采集时间。链路不适合
+重传整个包，县站也不一定有原始航扫文件：`diff` 让中心从旧包与订正后
+**独立构建**的新包生成一份可传输的补丁文件；`apply` 让县站只凭本地旧包与
+补丁，在新目录得到一份标准 `.mosaic` 包，继续用 `extract` / `season` /
+`audit` 读取。补丁传的是**数据内容的变更**，不是包文件的字节差异。
+
+```bash
+# 中心：扫描两个完整包，生成补丁（只读两个包，不修改它们）
+python3 -I agrimosaic/__main__.py diff --old pkg_v1.mosaic --new pkg_v2.mosaic \
+        --output delivery.patch.json
+# 县站：本地旧包 + 补丁 -> 新目录里的标准包（旧包只读，目标目录不可已存在）
+python3 -I agrimosaic/__main__.py apply --package pkg_v1.mosaic \
+        --patch delivery.patch.json --out pkg_v2.mosaic
+```
+
+### 内容模型与变更类型
+
+- 只支持现有包版本（`package_version: 1`）；两版认证值域必须相同，
+  共有批次的格网边长必须不变（否则 `diff` 拒收，该情形超出补丁模型）。
+- **批次**以批号识别，支持三类变更：
+  - `batch_additions`：新增批次（含批号、边长、采集时刻、声明覆盖）；
+  - `batch_removals`：整批撤回，**只传一次批号**，不逐格列清单；
+  - `batch_updates`：订正采集时间和/或声明覆盖（条目携带订正后的完整批次头）。
+- **格记录**以 (批号, 完整半开源格坐标) 识别，内容是状态和有效状态下的
+  反射/质量整对：`record_upserts` 传新增或内容变化的格（完整新内容），
+  `record_deletions` 传被删除的格。
+- 保留批次只传有变化的格记录；**只订正采集时间的批次一条格记录也不重传**；
+  没变化的批次和格一律不传。补丁不夹带派生统计、R 树索引或完整包，
+  处理全程以批次/格记录为单位，不按格的基本单元面积展开。
+- 批次缩小或移动声明覆盖时，同一次更新里可以同时删除老范围的格、增加新范围
+  的格；接收端校验的是**最终包**是否合规，最终越界的格一律报错，绝不默默丢弃。
+- 格记录冗余保存的采集时刻派生自所在批次：批次订正时间后，该批**全部**格记录
+  的时间随之更新，哪怕该格没有出现在补丁里；输出包的统计与 R 树索引也随
+  最终记录整体重建，与输出记录一致。
+
+### 规范化内容指纹
+
+补丁绑定旧版与新版各自的**规范化内容指纹**（`sha256:` 前缀的 SHA-256）。
+指纹覆盖且仅覆盖内容身份：
+
+- 包版本、认证值域；
+- 全部批次身份：批号、格网边长、采集时刻、声明覆盖矩形；
+- 全部格记录身份：批号、完整半开源格坐标、状态、有效状态下的反射/质量整对
+  ——包括从未在窗口裁决中胜出的格与零记录的空批次。
+
+计算方法：把上述内容整理成规范化结构——批次按批号排序、记录按
+(批号, x0, y0, x1, y1) 排序；采集时刻统一换算为 UTC 的 ISO 8601 字符串；
+有限数值解析为 IEEE 双精度后按最短往返表示序列化——再以
+`json.dumps(..., sort_keys=True, separators=(",", ":"))` 序列化并取 SHA-256。
+
+因此以下差异**不是**内容身份，不会产生变更：输入目录与 `source_file` 路径、
+批次/记录的成员排列、JSON 排版、统计字段、索引布局；等价的时区表示
+（如 `+08:00` 与 `Z`）与等价的有限反射数值写法（如 `0.5` 与 `5e-1`）
+归一后也不会改变指纹。
+
+### 补丁格式（`patch_version: 1`）
+
+```json
+{
+  "patch_format": "agrimosaic.patch",
+  "patch_version": 1,
+  "package_version": 1,
+  "base_fingerprint": "sha256:<旧版内容指纹>",
+  "target_fingerprint": "sha256:<新版内容指纹>",
+  "batch_additions": [
+    {"batch_id": "E", "cell_size": 2, "acquired_at": "2026-04-01T00:00:00+00:00",
+     "coverage": {"x0": 0, "y0": 8, "x1": 4, "y1": 12}}
+  ],
+  "batch_removals": ["C"],
+  "batch_updates": [
+    {"batch_id": "A", "acquired_at": "2026-03-01T00:00:00+00:00",
+     "coverage": {"x0": 0, "y0": 0, "x1": 8, "y1": 8}}
+  ],
+  "record_upserts": [
+    {"batch_id": "E", "cell": {"x0": 0, "y0": 8, "x1": 2, "y1": 10},
+     "state": "valid", "reflectance": 0.66, "quality": 66},
+    {"batch_id": "E", "cell": {"x0": 2, "y0": 8, "x1": 4, "y1": 10}, "state": "cloud"}
+  ],
+  "record_deletions": [
+    {"batch_id": "D", "cell": {"x0": 16, "y0": 0, "x1": 18, "y1": 2}}
+  ]
+}
+```
+
+- 各条目描述同一次变更前后的关系；**数组里的列出顺序不决定应用结果**。
+- 同样的逻辑输入生成逐字节相同的补丁（条目按键排序、序列化稳定）；
+  无变更时生成五个数组皆空的补丁，`apply` 照常可以应用。
+- `acquired_at` 在补丁中一律为 UTC 的 ISO 8601 表示。
+
+### 接收端校验与失败语义
+
+`apply` 依次校验，任何一步失败都以退出码 2 拒收，且**不改写旧包、不覆盖
+既有目标目录、不留下可被误认成成功的目标包**（全部校验通过后才原子落盘）：
+
+1. 本地包的内容指纹必须等于 `base_fingerprint`——查询结果相同但隐藏源格
+   不同的旧包在这一步被拒绝；
+2. 拒绝重复或冲突操作（同批次多次操作、同格又写又删、指向已撤回批次的
+   格操作）、引用不存在的批次或删除对象、与现有内容完全相同的冗余操作；
+3. 拒绝非法格或状态值组合（未对齐、边长不符、valid 缺整对、非 valid 携带
+   数值、有效整对越出认证值域），以及最终越出批次声明覆盖的格；
+4. 还原内容的内容指纹必须等于 `target_fingerprint`，否则不产出任何内容。
+
+`source_file` 不是内容身份，补丁不传输：还原包的 `meta.json` 中保留批次沿用
+旧包原值，新增批次记为 `null`（现有命令均不读取该字段）。
+
+可复跑证据（独立构建对照、反超、覆盖移动、规模不变性、隐藏源格拒收）：
+
+```bash
+python3 -I demo/build_patch_evidence.py
+```
+
+## 8. 模块布局
 
 ```
 agrimosaic/
@@ -276,7 +391,8 @@ agrimosaic/
   extract.py   窗口/目标格提取、赢家裁决、缺口归因、面积对平
   season.py    季末清单校验、逐轮裁决、多轮增量叠加、复测资格台账
   audit.py     批次质量审计：严格只读包、逐批原始数值异常、稳定报告
-  cli.py       build / extract / season / audit 命令行
-tests/         96 项 unittest（几何、裁决、归因、拒收、季末台账、审计、CLI 端到端）
+  patch.py     增量交付：规范化内容指纹、内容差分补丁生成与应用
+  cli.py       build / extract / season / audit / diff / apply 命令行
+tests/         136 项 unittest（几何、裁决、归因、拒收、季末台账、审计、补丁、CLI 端到端）
 demo/          夹具生成脚本与证据输出
 ```
