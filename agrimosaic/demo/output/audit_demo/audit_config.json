@@ -1,0 +1,62 @@
+{
+  "packages": [
+    "pkg_audit.mosaic"
+  ],
+  "batches": [
+    {
+      "batch_id": "COARSE",
+      "rules": [
+        {
+          "channel": "reflectance",
+          "min": 0.0,
+          "max": 0.5,
+          "anomaly_threshold": 1
+        }
+      ]
+    },
+    {
+      "batch_id": "MID_OLD",
+      "rules": [
+        {
+          "channel": "quality",
+          "min": 0,
+          "max": 50,
+          "anomaly_threshold": 1
+        }
+      ]
+    },
+    {
+      "batch_id": "FINE",
+      "rules": [
+        {
+          "channel": "reflectance",
+          "min": 0.0,
+          "max": 0.5,
+          "anomaly_threshold": 1
+        }
+      ]
+    },
+    {
+      "batch_id": "MID_NEW",
+      "rules": [
+        {
+          "channel": "reflectance",
+          "min": 0.0,
+          "max": 0.5,
+          "anomaly_threshold": 1
+        }
+      ]
+    },
+    {
+      "batch_id": "EMPTY",
+      "rules": [
+        {
+          "channel": "reflectance",
+          "min": 0.0,
+          "max": 0.5,
+          "anomaly_threshold": 1
+        }
+      ]
+    }
+  ]
+}

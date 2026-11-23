@@ -7,11 +7,12 @@
 纯 Python 标准库实现，建议一律以隔离模式运行：
 
 ```bash
-python3 -I run_tests.py                      # 63 项测试
+python3 -I run_tests.py                      # 96 项测试
 python3 -I agrimosaic/__main__.py build   --config <config.json> --out <pkg_dir>
 python3 -I agrimosaic/__main__.py extract --package <pkg_dir> \
         --x0 0 --y0 0 --x1 8 --y1 8 --target-size 2 [--output result.json]
 python3 -I agrimosaic/__main__.py season  --manifest <season.json> [--output ledger.json]
+python3 -I agrimosaic/__main__.py audit   --config <audit.json>  [--output report.json]
 ```
 
 ## 1. 数据契约
@@ -212,7 +213,59 @@ python3 -I demo/build_season_evidence.py
 # 门槛 2500bp 复测而 2501bp 不列入；极大地块：2^40 面积上两个细格修正精确扣减
 ```
 
-## 6. 模块布局
+## 6. 批次质量审计（audit）
+
+季末台账依赖 `extract` 的空间赢家，而赢家之外的观测永远不参与裁决。审计补上
+这一盲区：它**只读包、只统计记录本身**，逐个来源批次核对原始数值异常，
+让数据维护人员在引用包之前看到每个批次的异常数、异常面积与包围范围。
+
+```json
+{
+  "packages": ["../output/pkg_a.mosaic"],
+  "batches": [
+    {"batch_id": "B1", "rules": [
+      {"channel": "reflectance", "min": 0.15, "max": 1.0, "anomaly_threshold": 4},
+      {"channel": "quality", "min": 15, "max": 100, "anomaly_threshold": 4}
+    ]}
+  ]
+}
+```
+
+- `channel` 为 `reflectance` 或 `quality`；`min`/`max` 是**含端点**的合格区间。
+- `anomaly_threshold` 为正整数：某规则的区间外记录数**达到**门槛，该批即标记
+  `fail`（恰达门槛也算未通过）；同一批可分别对两个通道各配一条规则。
+- 统计对象是包中 `state=valid` 且该通道有值的**每条源格记录**；同一记录
+  仅计一次，不按空间赢家、覆盖关系或采集时间筛选。因此被更细格压过、或被
+  同分辨率更新批次压过（从未胜出）的异常批次同样会被发现。
+- 每条规则报告 `effective_record_count`（有效记录数）、`anomaly_record_count`
+  （区间外记录数）、`anomaly_area`（异常格对应基本单元总面积，源格边长 s 贡献
+  s²）与 `anomaly_bounds`（包住全部异常格的**最小半开矩形**；无异常时为 `null`）。
+- 配置点名但零记录的批次给零统计（`declared_record_count: 0`，各计数与面积为 0）。
+- 报告按包路径、批号稳定排序，序列化稳定，便于自动流程逐字节比较。
+
+退出状态与输入校验：
+
+| 情形 | 退出码 | 输出 |
+| --- | --- | --- |
+| 全部批次通过 | 0 | 完整报告 |
+| 有批次未通过 | 1 | 完整报告（仍含所有批次） |
+| 规则引用非法（通道/区间/门槛/点名不存在的批次）、包或记录结构损坏 | 2 | 不产出任何报告 |
+
+输入错误**不是**质量未通过：审计先完整读取并校验全部包，再计算、再一次性写出；
+`--output` 目标文件在输入校验失败时保持原样，stdout 模式也不会先打印半截 JSON。
+跨包引用同一批号或同一物理源格内容冲突一律按输入错误拒收，不静默择一。
+
+可复跑证据（小包独立手算 + 极大稀疏格）：
+
+```bash
+python3 -I demo/build_audit_evidence.py      # 隐藏异常、零记录批次、只读校验
+```
+
+极大稀疏格案例（测试 `SparseHugeCellTest`）用多条互不相交的 2²⁰ 边长源格，
+验证面积按 `记录数 × s²` 累计，且单次审计遍历的记录条数只随记录数增长，
+与每格覆盖的基本单元数无关。
+
+## 7. 模块布局
 
 ```
 agrimosaic/
@@ -222,7 +275,8 @@ agrimosaic/
   store.py     离线入仓、原子落盘、读包
   extract.py   窗口/目标格提取、赢家裁决、缺口归因、面积对平
   season.py    季末清单校验、逐轮裁决、多轮增量叠加、复测资格台账
-  cli.py       build / extract / season 命令行
-tests/         63 项 unittest（几何、裁决、归因、拒收、季末台账、CLI 端到端）
+  audit.py     批次质量审计：严格只读包、逐批原始数值异常、稳定报告
+  cli.py       build / extract / season / audit 命令行
+tests/         96 项 unittest（几何、裁决、归因、拒收、季末台账、审计、CLI 端到端）
 demo/          夹具生成脚本与证据输出
 ```

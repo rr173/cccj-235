@@ -1,0 +1,14 @@
+{
+  "packages": ["../output/pkg_a"],
+  "batches": [
+    {"batch_id": "B1", "rules": [
+      {"channel": "reflectance", "min": 0.15, "max": 1.0, "anomaly_threshold": 4}
+    ]},
+    {"batch_id": "B2", "rules": [
+      {"channel": "reflectance", "min": 0.15, "max": 1.0, "anomaly_threshold": 1}
+    ]},
+    {"batch_id": "B3", "rules": [
+      {"channel": "quality", "min": 0, "max": 100, "anomaly_threshold": 1}
+    ]}
+  ]
+}

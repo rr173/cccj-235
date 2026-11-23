@@ -1,0 +1,83 @@
+{
+  "package_version": 1,
+  "tool_version": "1.1.0",
+  "value_domain": {
+    "reflectance_min": 0.0,
+    "reflectance_max": 1.0,
+    "quality_min": 0,
+    "quality_max": 100
+  },
+  "batches": [
+    {
+      "batch_id": "FINE",
+      "acquired_at": "2026-03-01T00:00:00+00:00",
+      "cell_size": 1,
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 12,
+        "y1": 12
+      },
+      "source_file": "pkg_audit_FINE.jsonl"
+    },
+    {
+      "batch_id": "COARSE",
+      "acquired_at": "2026-01-01T00:00:00+00:00",
+      "cell_size": 4,
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 12,
+        "y1": 12
+      },
+      "source_file": "pkg_audit_COARSE.jsonl"
+    },
+    {
+      "batch_id": "MID_OLD",
+      "acquired_at": "2026-01-05T00:00:00+00:00",
+      "cell_size": 2,
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 12,
+        "y1": 12
+      },
+      "source_file": "pkg_audit_MID_OLD.jsonl"
+    },
+    {
+      "batch_id": "MID_NEW",
+      "acquired_at": "2026-02-01T00:00:00+00:00",
+      "cell_size": 2,
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 12,
+        "y1": 12
+      },
+      "source_file": "pkg_audit_MID_NEW.jsonl"
+    },
+    {
+      "batch_id": "EMPTY",
+      "acquired_at": "2026-01-01T00:00:00+00:00",
+      "cell_size": 2,
+      "coverage": {
+        "x0": 0,
+        "y0": 0,
+        "x1": 12,
+        "y1": 12
+      },
+      "source_file": "pkg_audit_EMPTY.jsonl"
+    }
+  ],
+  "record_count": 26,
+  "stats": {
+    "valid": 26,
+    "cloud": 0,
+    "missing_channel": 0,
+    "by_cell_size": {
+      "1": 16,
+      "2": 8,
+      "4": 2
+    }
+  }
+}

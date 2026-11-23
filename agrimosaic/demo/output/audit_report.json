@@ -1,0 +1,141 @@
+{
+  "job": "agrimosaic.audit.batch_quality",
+  "schema_version": 1,
+  "packages": [
+    {
+      "path": "/workspace/agrimosaic/demo/output/audit_demo/pkg_audit.mosaic",
+      "record_count": 26,
+      "batch_ids": [
+        "COARSE",
+        "EMPTY",
+        "FINE",
+        "MID_NEW",
+        "MID_OLD"
+      ],
+      "batch_record_counts": {
+        "COARSE": 2,
+        "EMPTY": 0,
+        "FINE": 16,
+        "MID_NEW": 4,
+        "MID_OLD": 4
+      }
+    }
+  ],
+  "audit": [
+    {
+      "batch_id": "COARSE",
+      "source_package": "/workspace/agrimosaic/demo/output/audit_demo/pkg_audit.mosaic",
+      "declared_record_count": 2,
+      "status": "fail",
+      "rules": [
+        {
+          "channel": "reflectance",
+          "min": 0.0,
+          "max": 0.5,
+          "anomaly_threshold": 1,
+          "effective_record_count": 2,
+          "anomaly_record_count": 1,
+          "anomaly_area": 16,
+          "anomaly_bounds": {
+            "x0": 0,
+            "y0": 0,
+            "x1": 4,
+            "y1": 4
+          },
+          "status": "fail"
+        }
+      ]
+    },
+    {
+      "batch_id": "EMPTY",
+      "source_package": "/workspace/agrimosaic/demo/output/audit_demo/pkg_audit.mosaic",
+      "declared_record_count": 0,
+      "status": "pass",
+      "rules": [
+        {
+          "channel": "reflectance",
+          "min": 0.0,
+          "max": 0.5,
+          "anomaly_threshold": 1,
+          "effective_record_count": 0,
+          "anomaly_record_count": 0,
+          "anomaly_area": 0,
+          "anomaly_bounds": null,
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "batch_id": "FINE",
+      "source_package": "/workspace/agrimosaic/demo/output/audit_demo/pkg_audit.mosaic",
+      "declared_record_count": 16,
+      "status": "pass",
+      "rules": [
+        {
+          "channel": "reflectance",
+          "min": 0.0,
+          "max": 0.5,
+          "anomaly_threshold": 1,
+          "effective_record_count": 16,
+          "anomaly_record_count": 0,
+          "anomaly_area": 0,
+          "anomaly_bounds": null,
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "batch_id": "MID_NEW",
+      "source_package": "/workspace/agrimosaic/demo/output/audit_demo/pkg_audit.mosaic",
+      "declared_record_count": 4,
+      "status": "pass",
+      "rules": [
+        {
+          "channel": "reflectance",
+          "min": 0.0,
+          "max": 0.5,
+          "anomaly_threshold": 1,
+          "effective_record_count": 4,
+          "anomaly_record_count": 0,
+          "anomaly_area": 0,
+          "anomaly_bounds": null,
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "batch_id": "MID_OLD",
+      "source_package": "/workspace/agrimosaic/demo/output/audit_demo/pkg_audit.mosaic",
+      "declared_record_count": 4,
+      "status": "fail",
+      "rules": [
+        {
+          "channel": "quality",
+          "min": 0,
+          "max": 50,
+          "anomaly_threshold": 1,
+          "effective_record_count": 4,
+          "anomaly_record_count": 1,
+          "anomaly_area": 4,
+          "anomaly_bounds": {
+            "x0": 4,
+            "y0": 0,
+            "x1": 6,
+            "y1": 2
+          },
+          "status": "fail"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "package_count": 1,
+    "audited_batch_count": 5,
+    "failed_batch_count": 2,
+    "failed_batch_ids": [
+      "COARSE",
+      "MID_OLD"
+    ],
+    "status": "fail"
+  }
+}
